@@ -27,5 +27,10 @@ namespace OdeToFood.Data
         {
             return string.IsNullOrEmpty(name) ? GetAll() : restaurants.FindAll(restaurant => restaurant.Name.StartsWith(name));
         }
+
+        public Restaurant GetRestaurantById(int id)
+        {
+            return restaurants.Find(r => r.Id.Equals(id));
+        }
     }
 }
