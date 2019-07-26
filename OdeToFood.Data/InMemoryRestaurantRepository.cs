@@ -30,7 +30,25 @@ namespace OdeToFood.Data
 
         public Restaurant GetRestaurantById(int id)
         {
-            return restaurants.Find(r => r.Id.Equals(id));
+            return restaurants.SingleOrDefault(r => r.Id.Equals(id));
+        }
+
+        public Restaurant Update(Restaurant restaurant)
+        {
+            var oldRestaurant = restaurants.SingleOrDefault(r => r.Id.Equals(restaurant.Id));
+
+            if (oldRestaurant == null) return restaurant;
+
+            oldRestaurant.Name = restaurant.Name;
+            oldRestaurant.Location = restaurant.Location;
+            oldRestaurant.Cuisine = restaurant.Cuisine;
+
+            return restaurant;
+        }
+
+        public int Commit()
+        {
+            return 0;
         }
     }
 }
